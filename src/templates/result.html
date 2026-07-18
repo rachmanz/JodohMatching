@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JodohMatching | Hasil Analisis</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="bg-light">
+    <div
+      class="container min-vh-100 d-flex flex-column justify-content-center align-items-center py-5"
+    >
+      <div class="card shadow-lg p-5 text-center main-card animate-scale-up">
+        <h2 class="fw-bold mb-4">💘 Hasil Kecocokan Wajah 💘</h2>
+
+        <!-- Tampilan Foto yang Dicocokkan -->
+        <div class="row g-3 justify-content-center mb-4">
+          <div class="col-5">
+            <img
+              src="{{ url_for('static', filename='uploads/' + foto_user_name) }}"
+              class="img-thumbnail rounded-circle match-thumb shadow-sm"
+              alt="Kamu"
+            />
+            <p class="small fw-semibold mt-2 text-muted">Kamu</p>
+          </div>
+          <div class="col-2 d-flex align-items-center justify-content-center">
+            <span class="fs-1 text-danger animate-pulse">⚡</span>
+          </div>
+          <div class="col-5">
+            <img
+              src="{{ url_for('static', filename='uploads/' + foto_target_name) }}"
+              class="img-thumbnail rounded-circle match-thumb shadow-sm"
+              alt="Doi"
+            />
+            <p class="small fw-semibold mt-2 text-muted">Doi</p>
+          </div>
+        </div>
+
+        <!-- Progress Bar & Persentase (Data dari Flask) -->
+        <div class="mb-4">
+          <h1
+            class="display-2 fw-black text-danger mb-1 score-text"
+            data-target="{{ skor }}"
+          >
+            <span id="liveScore">0</span>%
+          </h1>
+
+          <div class="progress" style="height: 25px">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+              role="progressbar"
+              style="width: 0%"
+              id="progressBar"
+              aria-valuenow="{{ skor }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Pesan/Status Jodoh -->
+        <div class="alert alert-danger shadow-sm mb-4 py-3">
+          <h5 class="alert-heading fw-bold mb-1">Status Kecocokan:</h5>
+          <p class="mb-0 fs-5 italic">"{{ pesan }}"</p>
+        </div>
+
+        <!-- Tombol Kembali -->
+        <a
+          href="{{ url_for('index') }}"
+          class="btn btn-outline-secondary btn-lg w-100 fw-semibold"
+        >
+          🔄 Coba Pasangan Lain
+        </a>
+      </div>
+    </div>
+
+    <!-- JS Native Integration -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
