@@ -75,7 +75,7 @@ def result():
         else:
             pesan_jodoh = "Skornya agak tipis nih, tapi tenang! Banyak kok pasangan yang wajahnya beda jauh tapi langgeng sampai kakek-nenek. Semangat! 🔥"
             
-        # 6. Kirim semua data hasil kalkulasi ke template HTML
+        # Kirim semua data hasil kalkulasi ke template HTML
         return render_template("result.html", 
                                skor=skor_cocok, 
                                pesan=pesan_jodoh, 
